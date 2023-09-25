@@ -17,7 +17,7 @@ RUN mkdir /app
 
 COPY --from=build /project/target/app.war /app/app.war
 
-ENV profile=dev 
+ENV PROFILE=dev
 # ENV profile=stg 
 # ENV profile=prd 
 
