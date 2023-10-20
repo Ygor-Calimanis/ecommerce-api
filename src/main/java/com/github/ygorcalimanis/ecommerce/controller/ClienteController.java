@@ -1,16 +1,14 @@
 package com.github.ygorcalimanis.ecommerce.controller;
 
 import java.net.http.HttpResponse;
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.github.ygorcalimanis.ecommerce.model.Cliente;
 import com.github.ygorcalimanis.ecommerce.service.ClienteService;
@@ -44,6 +42,22 @@ public class ClienteController {
 
         ClienteDTO dto = this.map(clienteService.findById(id));
         return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<ClienteDTO> create(ClienteCreateDTO requestDto) {
+        Cliente cliente = map(requestDto);
+
+        Cliente clienteSaved = clienteService.save(cliente);
+
+        ClienteDTO responseDto = this.map(clienteSaved);
+        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
+    }
+
+    private Cliente map(ClienteCreateDTO dto) {
+        Cliente cliente = modelMapper.map(dto, Cliente.class);
+        cliente.setDataCadastro(Instant.now());
+        return cliente;
     }
 
     private ClienteDTO map(@PathVariable Cliente cliente) {
