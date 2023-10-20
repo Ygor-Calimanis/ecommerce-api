@@ -4,7 +4,7 @@ server:
 springdoc:
   swagger-ui:
     use-root-path: true
-    
+
 spring:
   datasource:
     url: jdbc:h2:mem:testdb
@@ -17,13 +17,13 @@ spring:
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: create
-    
+
   h2:
     console:
       enabled: true
-#  sql:
-#    init:
-#      mode: always
-#      data-locations: classpath:data-dev.sql
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data-dev.sql
     
     
