@@ -47,7 +47,8 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<ClienteDTO> create(@Valid ClienteCreateDTO requestDto) {
+
+    public ResponseEntity<ClienteDTO> create(@Valid @RequestBody ClienteCreateDTO requestDto) {
         Cliente cliente = map(requestDto);
 
         Cliente clienteSaved = clienteService.save(cliente);
