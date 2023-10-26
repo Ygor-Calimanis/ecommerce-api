@@ -15,6 +15,8 @@ import com.github.ygorcalimanis.ecommerce.service.ClienteService;
 
 import lombok.RequiredArgsConstructor;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/clientes")
 @RequiredArgsConstructor
@@ -45,7 +47,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<ClienteDTO> create(ClienteCreateDTO requestDto) {
+    public ResponseEntity<ClienteDTO> create(@Valid ClienteCreateDTO requestDto) {
         Cliente cliente = map(requestDto);
 
         Cliente clienteSaved = clienteService.save(cliente);
