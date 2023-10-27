@@ -1,5 +1,6 @@
 package com.github.ygorcalimanis.ecommerce.controller;
 
+import com.github.ygorcalimanis.ecommerce.model.Pedido;
 import com.github.ygorcalimanis.ecommerce.service.PedidoService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -22,13 +23,16 @@ public class PedidoController {
     @GetMapping
     public ResponseEntity<List<PedidoDTO>> getAll() {
 
-        List<PedidoDTO> result = null;
-//                pedidoService.getAll()
-//                        .stream()
-//                        .map(this::map)
-//                        .collect(Collectors.toList());
+        List<PedidoDTO> result =
+                pedidoService.getAll().stream().map(this::map).collect(Collectors.toList());
         return new ResponseEntity<>(result, HttpStatus.OK);
         // payload
+    }
+
+    private PedidoDTO map(Pedido pedido) {
+        PedidoDTO dto = modelMapper.map(pedido, PedidoDTO.class);
+        dto.setCliente_id(pedido.getCliente().getId());
+        return dto;
     }
 
 //    @GetMapping(value = "{id}")
