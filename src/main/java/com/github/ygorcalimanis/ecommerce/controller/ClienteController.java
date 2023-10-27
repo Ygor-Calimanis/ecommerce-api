@@ -5,6 +5,8 @@ import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.github.ygorcalimanis.ecommerce.model.Pedido;
+import com.github.ygorcalimanis.ecommerce.service.PedidoService;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class ClienteController {
     private final ClienteService clienteService;
+    private final PedidoService pedidoService;
     private final ModelMapper modelMapper;
 
     @GetMapping
@@ -43,6 +46,16 @@ public class ClienteController {
         }
 
         ClienteDTO dto = this.map(clienteService.findById(id));
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "{id}/pedidos")
+    public ResponseEntity<List<PedidoDTO>> findPedidosByClienteId(@PathVariable long id) {
+        if (!clienteService.exists(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        List<PedidoDTO> dto = null; //this.map(clienteService.findById(id));
+        List< Pedido> Pedidos = pedidoService.findByCliente(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
