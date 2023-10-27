@@ -5,4 +5,3 @@ springdoc:
   swagger-ui:
     use-root-path: true
 
-mensagem: "Você está usando o PROFILE PRD"

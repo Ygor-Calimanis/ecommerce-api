@@ -65,3 +65,28 @@ Item de Pedido
 3 - Criar camada de persistencia
 
 4 - Criar endpoints CRUD usando DTOs para as entidades
+
+- 4.1 Feature - CRUD Cliente
+- 4.1.1 criar endpoint para listar clientes
+```
+git checkout -b feature/listar_cliente
+git push --set-upstream origin feature/listar_cliente
+```
+- 4.1.2 criar endpoint para pesquisar cliente por ID
+```
+git checkout -b feature/4.1.2-cliente_por_id
+git push --set-upstream origin feature/4.1.2-cliente_por_id
+```
+- 4.1.3 criar endpoint para criar cliente
+- 4.1.4 criar endpoint para alterar cliente
+- 4.1.5 criar endpoint para excluir cliente
+
+## Referencias
+
+- https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+- http://h2database.com/html/functions.html
+- https://www.baeldung.com/entity-to-and-from-dto-for-a-java-spring-application
+- https://www.baeldung.com/java-dto-pattern
+- https://www.baeldung.com/java-instant-to-string
+- https://www.baeldung.com/spring-boot-data-sql-and-schema-sql
+- https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto.data-initialization.using-basic-sql-scripts
