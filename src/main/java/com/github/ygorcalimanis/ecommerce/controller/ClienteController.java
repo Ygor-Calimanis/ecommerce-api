@@ -57,6 +57,22 @@ public class ClienteController {
         return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
     }
 
+    @PutMapping("{id}")
+
+    public ResponseEntity<ClienteDTO> update(@Valid @RequestBody ClienteCreateDTO requestDto, @PathVariable long id) {
+        if (!clienteService.exists(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        Cliente cliente = map(requestDto);
+
+        cliente.setId(id);
+
+        Cliente clienteSaved = clienteService.save(cliente);
+
+        ClienteDTO responseDto = this.map(clienteSaved);
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
+    }
+
     private Cliente map(ClienteCreateDTO dto) {
         Cliente cliente = modelMapper.map(dto, Cliente.class);
         cliente.setDataCadastro(Instant.now());
