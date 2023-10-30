@@ -18,12 +18,11 @@ http://localhost:8083/h2-console
 
 ## Instruções de Implementação
 
-No projeto "ecommerce" desenvolvido no Checkpoint 2:
+No  projeto "ecommerce" desenvolvido no Checkpoint 2:
 
-Etidades:
+1 - Criar as entidades
 
 Cliente
-
 - id: Long (PK)
 - nome: String(100) (NN)
 - CEP: String(9)
@@ -37,7 +36,6 @@ Cliente
 - ativo: boolean  (NN)
 
 Pedido
-
 - id: Long (PK)
 - cliente: Cliente  (NN)
 - data do pedido: Instant  (NN)
@@ -46,13 +44,11 @@ Pedido
 - situacao: Enum{ATIVO, CANCELADO, ENTREGUE} (NN)
 
 Produto
-
 - id: Long (PK)
 - nome: String(100) (NN)
 - data de dadastro: Instant (NN)
 
 Item de Pedido
-
 - id: Long (PK)
 - pedido: Pedido (NN)
 - produto: Produto (NN)
@@ -68,18 +64,25 @@ Item de Pedido
 
 - 4.1 Feature - CRUD Cliente
 - 4.1.1 criar endpoint para listar clientes
-```
-git checkout -b feature/listar_cliente
-git push --set-upstream origin feature/listar_cliente
-```
 - 4.1.2 criar endpoint para pesquisar cliente por ID
-```
-git checkout -b feature/4.1.2-cliente_por_id
-git push --set-upstream origin feature/4.1.2-cliente_por_id
-```
 - 4.1.3 criar endpoint para criar cliente
 - 4.1.4 criar endpoint para alterar cliente
 - 4.1.5 criar endpoint para excluir cliente
+- 4.1.6 listar pedidos por id do cliente
+
+- 4.2 Feature - CRUD Pedido
+- 4.2.1 criar endpoint para listar pedidos
+- 4.2.2 criar endpoint para pesquisar pedido por ID
+- 4.2.3 criar endpoint para criar pedido
+- 4.2.4 criar endpoint para alterar pedido
+
+### Git Flow
+
+- branch develop a partir da master
+```
+git checkout -b develop
+git push --set-upstream origin develop
+```
 
 ## Referencias
 
@@ -90,3 +93,6 @@ git push --set-upstream origin feature/4.1.2-cliente_por_id
 - https://www.baeldung.com/java-instant-to-string
 - https://www.baeldung.com/spring-boot-data-sql-and-schema-sql
 - https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto.data-initialization.using-basic-sql-scripts
+- https://springjava.com/spring-boot/response-entity-in-rest-api-crud-example-spring-boot
+- https://www.baeldung.com/java-optional
+- https://www.baeldung.com/spring-hateoas-tutorial
