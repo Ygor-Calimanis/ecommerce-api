@@ -23,78 +23,62 @@ import javax.validation.Valid;
 @RequestMapping("/clientes")
 @RequiredArgsConstructor
 public class ClienteController {
-    private final ClienteService clienteService;
-    private final PedidoService pedidoService;
-    private final ModelMapper modelMapper;
+	private final ClienteService clienteService;
+	private final PedidoService pedidoService;
+	private final ModelMapper modelMapper;
 
-    @GetMapping
-    public ResponseEntity<List<ClienteDTO>> getAll() {
-        // mapear/converter cada Cliente -> ClienteDTO
-        List<ClienteDTO> result =
-                clienteService.getAll()
-                        .stream()
-                        .map(this::map)
-                        .collect(Collectors.toList());
-        return new ResponseEntity<>(result, HttpStatus.OK);
-        // payload
-    }
+	@GetMapping
+	public ResponseEntity<List<ClienteDTO>> getAll() {
 
-    @GetMapping(value = "{id}")
-    public ResponseEntity<ClienteDTO> findById(long id) {
-        if (!clienteService.exists(id)) {
-            return ResponseEntity.notFound().build();
-        }
+		// mapear/converter cada Cliente -> ClienteDTO
+		List<ClienteDTO> result = clienteService.getAll().stream().map(this::map).collect(Collectors.toList());
 
-        ClienteDTO dto = this.map(clienteService.findById(id));
-        return new ResponseEntity<>(dto, HttpStatus.OK);
-    }
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
 
-    @GetMapping(value = "{id}/pedidos")
-    public ResponseEntity<List<PedidoDTO>> findPedidosByClienteId(@PathVariable long id) {
-        if (!clienteService.exists(id)) {
-            return ResponseEntity.notFound().build();
-        }
-        List<PedidoDTO> dto = null; //this.map(clienteService.findById(id));
-        List< Pedido> Pedidos = pedidoService.findByCliente(id);
-        return new ResponseEntity<>(dto, HttpStatus.OK);
-    }
+	@GetMapping("{id}")
+	public ResponseEntity<ClienteDTO> findById(@PathVariable long id) {
+		if (!clienteService.exists(id)) {
+			return ResponseEntity.notFound().build();
+		}
 
-    @PostMapping
+		ClienteDTO dto = this.map(clienteService.findById(id));
 
-    public ResponseEntity<ClienteDTO> create(@Valid @RequestBody ClienteCreateDTO requestDto) {
-        Cliente cliente = map(requestDto);
+		return new ResponseEntity<>(dto, HttpStatus.OK);
+	}
 
-        Cliente clienteSaved = clienteService.save(cliente);
+	@GetMapping("{id}/pedidos")
+	public ResponseEntity<List<PedidoDTO>> findPedidosByClienteId(@PathVariable long id) {
+		if (!clienteService.exists(id)) {
+			return ResponseEntity.notFound().build();
+		}
 
-        ClienteDTO responseDto = this.map(clienteSaved);
-        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
-    }
+		List<PedidoDTO> dto = null; // this.map(clienteService.findById(id));
 
-    @PutMapping("{id}")
+		List<Pedido> pedidos = pedidoService.findByCliente(id);
+		
+		return new ResponseEntity<>(dto, HttpStatus.OK);
+	}
 
-    public ResponseEntity<ClienteDTO> update(@Valid @RequestBody ClienteCreateDTO requestDto, @PathVariable long id) {
-        if (!clienteService.exists(id)) {
-            return ResponseEntity.notFound().build();
-        }
-        Cliente cliente = map(requestDto);
+	@PostMapping
+	public ResponseEntity<ClienteDTO> create(@Valid @RequestBody ClienteCreateDTO requestDto) {
 
-        cliente.setId(id);
+		Cliente cliente = map(requestDto);
 
-        Cliente clienteSaved = clienteService.save(cliente);
+		Cliente clienteSaved = clienteService.save(cliente);
 
-        ClienteDTO responseDto = this.map(clienteSaved);
-        return new ResponseEntity<>(responseDto, HttpStatus.OK);
-    }
+		ClienteDTO responseDto = this.map(clienteSaved);
+		return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
+	}
 
-    private Cliente map(ClienteCreateDTO dto) {
-        Cliente cliente = modelMapper.map(dto, Cliente.class);
-        cliente.setDataCadastro(Instant.now());
-        return cliente;
-    }
+	private Cliente map(ClienteCreateDTO dto) {
+		Cliente cliente = modelMapper.map(dto, Cliente.class);
+		cliente.setDataCadastro(Instant.now());
+		return cliente;
+	}
 
-    private ClienteDTO map(@PathVariable Cliente cliente) {
-        ClienteDTO dto =
-                modelMapper.map(cliente, ClienteDTO.class);
-        return dto;
-    }
+	private ClienteDTO map(Cliente cliente) {
+		ClienteDTO dto = modelMapper.map(cliente, ClienteDTO.class);
+		return dto;
+	}
 }

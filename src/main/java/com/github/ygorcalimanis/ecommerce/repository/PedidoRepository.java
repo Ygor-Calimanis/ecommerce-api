@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
-    @Query("select o from Pedido p where o.cliente_id := id")
-    List<Pedido>findByCliente(@Param("id") Long id);
+
+	@Query("select o from Pedido o where o.cliente.id = :id")
+	List<Pedido> findByCliente(@Param("id") Long id);
 }

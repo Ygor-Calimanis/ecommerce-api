@@ -10,13 +10,16 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class PedidoService {
-    private final PedidoRepository pedidoRepository;
 
-    public List<Pedido> getAll() {
-        return pedidoRepository.findAll();
-    }
+	private final PedidoRepository pedidoRepository;
 
-    public List<Pedido> findByCliente(long id) {
-        return pedidoRepository.findByCliente(id);
-    }
+	public List<Pedido> getAll() {
+		return pedidoRepository.findAll();
+	}
+
+	public List<Pedido> findByCliente(long id) {
+
+		return pedidoRepository.findByCliente(id);
+	}
+
 }
