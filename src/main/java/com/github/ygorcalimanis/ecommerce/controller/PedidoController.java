@@ -1,6 +1,8 @@
 package com.github.ygorcalimanis.ecommerce.controller;
 
 
+import com.github.ygorcalimanis.ecommerce.dto.PedidoDTO;
+import com.github.ygorcalimanis.ecommerce.mapper.PedidoMapper;
 import com.github.ygorcalimanis.ecommerce.service.PedidoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
