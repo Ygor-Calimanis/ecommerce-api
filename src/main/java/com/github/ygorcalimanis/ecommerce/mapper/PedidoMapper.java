@@ -1,5 +1,6 @@
-package com.github.ygorcalimanis.ecommerce.controller;
+package com.github.ygorcalimanis.ecommerce.mapper;
 
+import com.github.ygorcalimanis.ecommerce.dto.PedidoDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
