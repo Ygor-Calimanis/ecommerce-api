@@ -1,7 +1,9 @@
-package com.github.ygorcalimanis.ecommerce.controller;
+package com.github.ygorcalimanis.ecommerce.mapper;
 
 import java.time.Instant;
 
+import com.github.ygorcalimanis.ecommerce.dto.ClienteCreateDTO;
+import com.github.ygorcalimanis.ecommerce.dto.ClienteDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.github.ygorcalimanis.ecommerce.controller;
+package com.github.ygorcalimanis.ecommerce.dto;
 
 import java.time.Instant;
 

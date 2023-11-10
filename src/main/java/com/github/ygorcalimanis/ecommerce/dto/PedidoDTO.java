@@ -1,4 +1,4 @@
-package com.github.ygorcalimanis.ecommerce.controller;
+package com.github.ygorcalimanis.ecommerce.dto;
 
 import com.github.ygorcalimanis.ecommerce.model.Cliente;
 import com.github.ygorcalimanis.ecommerce.model.SituacaoPedido;
